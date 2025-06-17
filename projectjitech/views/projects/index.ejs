@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Projects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f9fafa; }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .btn-custom {
+      background-color: #0097a7;
+      color: white;
+      border: none;
+    }
+    .btn-custom:hover {
+      background-color: #007c91;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3>Projects</h3>
+      <a href="/projects/add" class="btn btn-outline-primary">+ Add Project</a>
+    </div>
+
+    <div class="row">
+      <% projects.forEach(project => { %>
+        <div class="col-md-4 mb-4">
+          <div class="card p-3">
+            <h5><%= project.name %></h5>
+            <p>Project ID: <%= project.projectId %></p>
+            <p>Start Date: <%= project.startDate %></p>
+            <p>End Date: <%= project.endDate %></p>
+            <a href="/projects/<%= project._id %>" class="btn btn-custom">See Details</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>
