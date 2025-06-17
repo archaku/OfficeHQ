@@ -24,7 +24,7 @@
   <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h3>Projects</h3>
-      <a href="/projects/add" class="btn btn-outline-primary">+ Add Project</a>
+      <a href="/projects/add" class="btn btn-custom">Add New Project</a>
     </div>
 
     <div class="row">
@@ -32,10 +32,10 @@
         <div class="col-md-4 mb-4">
           <div class="card p-3">
             <h5><%= project.name %></h5>
-            <p>Project ID: <%= project.projectId %></p>
-            <p>Start Date: <%= project.startDate %></p>
-            <p>End Date: <%= project.endDate %></p>
-            <a href="/projects/<%= project._id %>" class="btn btn-custom">See Details</a>
+            <p><strong>ID:</strong> <%= project.projectId %></p>
+            <p><strong>Start:</strong> <%= project.startDate %></p>
+            <p><strong>End:</strong> <%= project.endDate %></p>
+            <a href="/projects/<%= project._id %>" class="btn btn-custom mt-2">See Details</a>
           </div>
         </div>
       <% }) %>

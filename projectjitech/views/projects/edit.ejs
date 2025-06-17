@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= project.name %> - Edit</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f9f9f9;
+      padding: 2rem;
+    }
+    .form-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .form-control, .form-select {
+      border-radius: 20px;
+    }
+    .btn-cancel {
+      border: 1px solid #ccc;
+      color: #333;
+      background: white;
+      border-radius: 20px;
+      padding: 5px 20px;
+    }
+    .btn-save {
+      background-color: #0097a7;
+      color: white;
+      border-radius: 20px;
+      padding: 5px 20px;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: white;
+      border-radius: 20px;
+      padding: 5px 20px;
+    }
+    .nav-tabs .nav-link.active {
+      border-bottom: 2px solid #0097a7;
+      color: #0097a7;
+    }
+  </style>
+</head>
+<body>
+
+  <h5 class="mb-4">Project &gt; Edit</h5>
+
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item"><a class="nav-link active" href="#">Details</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Stake Holder</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Milestone</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Document</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Task</a></li>
+  </ul>
+
+  <div class="form-section">
+    <form action="/projects/<%= project._id %>?_method=PUT" method="POST">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label>ID <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" name="projectId" value="<%= project.projectId %>" required>
+        </div>
+        <div class="col-md-4">
+          <label>Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" name="name" value="<%= project.name %>" required>
+        </div>
+        <div class="col-md-4">
+          <label>Department</label>
+          <select class="form-select" name="department">
+            <option disabled>Select</option>
+            <option <%= project.department === 'HR' ? 'selected' : '' %>>HR</option>
+            <option <%= project.department === 'IT' ? 'selected' : '' %>>IT</option>
+            <option <%= project.department === 'Marketing' ? 'selected' : '' %>>Marketing</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label>Category</label>
+          <select class="form-select" name="category">
+            <option disabled>Select</option>
+            <option <%= project.category === 'Internal' ? 'selected' : '' %>>Internal</option>
+            <option <%= project.category === 'Client' ? 'selected' : '' %>>Client</option>
+            <option <%= project.category === 'Other' ? 'selected' : '' %>>Other</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label>Start Date</label>
+          <input type="date" class="form-control" name="startDate" value="<%= project.startDate %>">
+        </div>
+        <div class="col-md-4">
+          <label>End Date</label>
+          <input type="date" class="form-control" name="endDate" value="<%= project.endDate %>">
+        </div>
+        <div class="col-12">
+          <label>Description</label>
+          <textarea class="form-control" name="description" rows="3"><%= project.description %></textarea>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex justify-content-between">
+        <a href="/projects" class="btn btn-cancel">Cancel</a>
+        <div>
+          <button type="submit" class="btn btn-save me-2">Save</button>
+          <form action="/projects/<%= project._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-delete">Delete</button>
+          </form>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
